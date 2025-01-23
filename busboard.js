@@ -1,16 +1,14 @@
 
-import {fetchTflArrivals} from "./fetchTflData.js";
+import {fetchTflArrivals,fetchTflBusStops} from "./fetchTflData.js";
 
-// TO DO - add readline-sync here
-// convert secon
-
-
-
-//Fetch Arrivals
-const fetchArrivalData = () =>{
+const BusBoard = () => {
+    //Fetch Bus Times - Part 1
     fetchTflArrivals();
+    //Fetch Bus Stops - Part 2
+    fetchTflBusStops();
+
 }
 
-fetchArrivalData();
+BusBoard();
 
 
