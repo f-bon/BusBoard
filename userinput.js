@@ -14,13 +14,13 @@ const rl = readline.createInterface({
   };
   
 // Main async function
-export const getStopPoint = async (fn, input) => {
+export const getuserInput = async (question) => {
     // Get user input using await
-    const stopPoint = await askQuestion('Please enter StopPoint ID');
+    const stopPoint = await askQuestion(`Please enter ${question}`);
      // Close the readline interface
     rl.close();
     return stopPoint;
   };
   
-  // Call the main async function - in busboard
+ 
   
