@@ -1,14 +1,14 @@
 
 import {fetchTflArrivals,fetchTflBusStops} from "./fetchTflData.js";
 
-const BusBoard = () => {
+const BusBoard = async () => {
     //Fetch Bus Times - Part 1
-    //fetchTflArrivals();
+   //await fetchTflArrivals();
     //Fetch Bus Stops - Part 2
-    fetchTflBusStops();
+    await fetchTflBusStops();
 
 }
 
-BusBoard();
-
+await BusBoard();
+// 490008660N
 

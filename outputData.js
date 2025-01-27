@@ -1,18 +1,18 @@
+import {sortBusList ,sliceBusList} from './utils.js';
+import { fetchTflArrivals } from './fetchTflData.js';
 
-export let outputData = (arrivalList) =>{
+export let outputData = (busStopsList,outputParam) =>{
      //Display Bus Times - Part 1
-     displayTflArrivals(arrivalList);
-
+    if (outputParam == 'TflArrivals'){
+     displayTflArrivals(busStopsList);
+    }
      //Display Bus Stops - Part 2
-    // displayTflBusStops(arrivalList);
-
-   
+    else if (outputParam == 'TflBusStops'){
+     displayTflBusStops(busStopsList);  
+    }  
 }
 
-//Part 1 - Displays the first 5 buses to arrive along with routes,destination and time in minutes
-let displayTflArrivals = (arrivalList) => {
-    //sort the data and get the first five entries
-    let outputList = (arrivalList.sort((a,b)=> a.timeToStation - b.timeToStation)).slice(0,5);
+let displayOutput =  (outputList) =>{
     for (let i = 0; i< outputList.length; i++ ){
         let displayObject = {
 
@@ -28,8 +28,26 @@ let displayTflArrivals = (arrivalList) => {
         }
         console.log(`\n`);
     }
+}
+
+
+
+//Part 1 - Displays the first 5 buses to arrive along with routes,destination and time in minutes
+let displayTflArrivals = (arrivalList) => {
+    //sort the data according to timeToStation and get the first five entries
+    //let outputList = (arrivalList.sort((a,b)=> a.timeToStation - b.timeToStation)).slice(0,5);
+    let outputList = sliceBusList(sortBusList(arrivalList,'TflArrivals'),5);
+    displayOutput(outputList);
+   
 };
 
 //Part 1 - Displays the first 5 buses to arrive along with routes,destination and time in minutes
-let displayTflBusStops = (outputList) => {
+let displayTflBusStops = (busStopsList) => {
+     //sort the data according to distance and get the first two entries
+    //let outputList = (arrivalList.sort((a,b)=> a.timeToStation - b.timeToStation)).slice(0,5);
+    let outputList = sliceBusList(sortBusList(busStopsList,'TflBusStops'),1);
+    for(let num=0; num<outputList.length;num++){
+        fetchTflArrivals(outputList[0].id);
+    } 
+
 }   
